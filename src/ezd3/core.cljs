@@ -57,12 +57,11 @@
    (let [did-mount (fn [elem]
                      (let [svg (-> js/d3
                                    (.select (r/dom-node elem))
-                                   (.append "svg")
                                    (attrs attr-map)
                                    (styles style-map))]
                        (did-mount-cb svg)))
          on-render (fn [width height did-mount-cb]
-                     [:div])]
+                     [:svg])]
      (r/create-class
       {:display-name        "d3svg"
        :reagent-render      on-render
