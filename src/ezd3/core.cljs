@@ -53,18 +53,16 @@
   "
   []
   (let [on-render-cb (atom nil)
-        did-mount (fn [elem]
-                    (let [render-cb @on-render-cb
-                          svg (-> js/d3
-                                  (.select (r/dom-node elem)))]
-                      (when render-cb
-                        (render-cb svg))
-                      svg))
-        on-render (fn []
-                    (let [this (r/current-component)
-                          props (r/props this)]
-                      (reset! on-render-cb (:on-render props))
-                      [:svg (dissoc props :on-render)]))]
+        did-mount    (fn [elem]
+                       (let [render-cb @on-render-cb
+                             svg       (.select js/d3 (r/dom-node elem))]
+                         (when render-cb
+                           (render-cb svg))))
+        on-render    (fn []
+                       (let [this  (r/current-component)
+                             props (r/props this)]
+                         (reset! on-render-cb (:on-render props))
+                         [:svg (dissoc props :on-render)]))]
     (r/create-class
      {:display-name        "d3svg"
       :reagent-render      on-render
