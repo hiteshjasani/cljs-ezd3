@@ -1,4 +1,4 @@
-(defproject org.jasani/ezd3 "0.1.0-SNAPSHOT"
+(defproject org.jasani/ezd3 "0.1.0"
   :description "A library to enable easy D3 and Reagent interop"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
