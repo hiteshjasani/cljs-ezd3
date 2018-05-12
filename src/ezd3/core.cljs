@@ -33,36 +33,39 @@
     (.style elem k v))
   elem)
 
-(def default-attrs {"width" 200 "height" 200})
-(def default-style {"border" "1px solid black"})
+(def default-props {:width 200 :height 200
+                    :style {:border "1px solid black"}})
 
 (defn d3svg
   "Reagent component for D3
 
-  When this component mounts, it will invoke the provided
-  `did-mount-cb` callback with an `svg` and the client can do all the
-  D3 operations they need to render.
+  When this component mounts, it will invoke the provided `on-render`
+  callback function with an `svg` and the client can do all the D3
+  operations they need to render.
 
   (defn my-render-function [svg]
     (-> js/d3
         (.select svg)
         ...))
 
-  [d3svg {\"width\" 400 \"height\" 200}
-         {\"border\" \"1px solid #dddddd}
-         my-render-function]
+  [d3svg {:width 400 :height 200 :on-render my-render-function
+          :style {:border \"1px solid #dddddd\"}}]
   "
-  ([did-mount-cb] (d3svg default-attrs default-style did-mount-cb))
-  ([attr-map style-map did-mount-cb]
-   (let [did-mount (fn [elem]
-                     (let [svg (-> js/d3
-                                   (.select (r/dom-node elem))
-                                   (attrs attr-map)
-                                   (styles style-map))]
-                       (did-mount-cb svg)))
-         on-render (fn [width height did-mount-cb]
-                     [:svg])]
-     (r/create-class
-      {:display-name        "d3svg"
-       :reagent-render      on-render
-       :component-did-mount did-mount}))))
+  []
+  (let [on-render-cb (atom nil)
+        did-mount (fn [elem]
+                    (let [render-cb @on-render-cb
+                          svg (-> js/d3
+                                  (.select (r/dom-node elem)))]
+                      (when render-cb
+                        (render-cb svg))
+                      svg))
+        on-render (fn []
+                    (let [this (r/current-component)
+                          props (r/props this)]
+                      (reset! on-render-cb (:on-render props))
+                      [:svg (dissoc props :on-render)]))]
+    (r/create-class
+     {:display-name        "d3svg"
+      :reagent-render      on-render
+      :component-did-mount did-mount})))
