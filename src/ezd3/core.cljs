@@ -2,6 +2,20 @@
   (:require [reagent.core :as r]
             [cljsjs/d3]))
 
+(defn translate
+  "Create translate style"
+  [dx dy]
+  (str "translate(" dx "," dy ")"))
+
+(defn rotate
+  "Create rotate style"
+  [rot]
+  (str "rotate(" rot ")"))
+
+(defn transform
+  "Create translate and rotate styles"
+  [dx dy rot] (str (translate dx dy) " " (rotate rot)))
+
 (defn attrs
   "Helper fn to apply attribute map to element as attributes
 
