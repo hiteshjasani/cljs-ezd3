@@ -1,6 +1,6 @@
-(defproject org.jasani/ezd3 "0.1.0"
+(defproject org.jasani/ezd3 "0.1.1-SNAPSHOT"
   :description "A library to enable easy D3 and Reagent interop"
-  :url "http://example.com/FIXME"
+  :url "https://github.com/hiteshjasani/cljs-ezd3"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.9.0"]
