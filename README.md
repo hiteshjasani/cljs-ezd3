@@ -1,5 +1,7 @@
 # ezd3
 
+[![Clojars Project](https://img.shields.io/clojars/v/org.jasani/ezd3.svg)](https://clojars.org/org.jasani/ezd3)
+
 A clojurescript library to provide an easy interface to D3.
 
 D3 is opinionated on how it wants to work with the DOM.  It will
