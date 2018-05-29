@@ -21,5 +21,4 @@ FIXME
 
 Copyright © 2018 Hitesh Jasani
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the BSD-2 Clause "Simplified" License.
