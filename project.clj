@@ -1,4 +1,4 @@
-(defproject org.jasani/ezd3 "0.1.1-SNAPSHOT"
+(defproject org.jasani/ezd3 "0.1.1"
   :description "A library to enable easy D3 and Reagent interop"
   :url "https://github.com/hiteshjasani/cljs-ezd3"
   :license {:name "BSD 2-Clause \"Simplified\" License"
